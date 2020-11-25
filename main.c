@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     if (argc > 1) strncpy(path, argv[1], sizeof(path)); 
     else
     {
+        printf("Enter directory: ");
         fgets(path, sizeof(path), stdin);
         path[strlen(path) - 1] = '\0'; 
     }
@@ -36,7 +37,6 @@ int main(int argc, char **argv)
         if (dent->d_type = DT_REG)
         {
             stat(dent->d_name, &tat);
-            printf("%s: %ld\n", dent->d_name, tat.st_size);
             total += tat.st_size;
         }
         dent = readdir(cur);
